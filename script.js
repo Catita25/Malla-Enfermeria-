@@ -1,34 +1,39 @@
-const ramos = [
-  { id: "anatomia", nombre: "Anatomía", aprobado: false, prerequisitos: [] },
-  { id: "fisiologia", nombre: "Fisiología", aprobado: false, prerequisitos: ["anatomia"] },
-  { id: "farmacologia", nombre: "Farmacología", aprobado: false, prerequisitos: ["fisiologia"] }
-];
+document.addEventListener("DOMContentLoaded", () => {
 
-function puedeDesbloquear(ramo) {
-  return ramo.prerequisitos.every(id =>
-    ramos.find(r => r.id === id && r.aprobado)
-  );
-}
+  const ramos = [
+    { id: "anatomia", nombre: "Anatomía", aprobado: false, prerequisitos: [] },
+    { id: "fisiologia", nombre: "Fisiología", aprobado: false, prerequisitos: ["anatomia"] },
+    { id: "farmacologia", nombre: "Farmacología", aprobado: false, prerequisitos: ["fisiologia"] }
+  ];
 
-function render() {
-  const div = document.getElementById("malla");
-  div.innerHTML = "";
+  function puedeDesbloquear(ramo) {
+    return ramo.prerequisitos.every(id =>
+      ramos.find(r => r.id === id && r.aprobado)
+    );
+  }
 
-  ramos.forEach(ramo => {
-    const bloqueado = !puedeDesbloquear(ramo) && ramo.prerequisitos.length > 0;
+  function render() {
+    const contenedor = document.getElementById("malla");
+    contenedor.innerHTML = "";
 
-    const btn = document.createElement("button");
-    btn.textContent = ramo.nombre + (ramo.aprobado ? " ✅" : bloqueado ? " 🔒" : "");
-    btn.disabled = bloqueado;
+    ramos.forEach(ramo => {
+      const bloqueado = ramo.prerequisitos.length > 0 && !puedeDesbloquear(ramo);
 
-    btn.onclick = () => {
-      ramo.aprobado = true;
-      render();
-    };
+      const boton = document.createElement("button");
+      boton.textContent =
+        ramo.nombre +
+        (ramo.aprobado ? " ✅" : bloqueado ? " 🔒" : "");
 
-    div.appendChild(btn);
-    div.appendChild(document.createElement("br"));
-  });
-}
+      boton.disabled = bloqueado;
 
-render();
+      boton.onclick = () => {
+        ramo.aprobado = true;
+        render();
+      };
+
+      contenedor.appendChild(boton);
+    });
+  }
+
+  render();
+});
