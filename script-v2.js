@@ -71,7 +71,7 @@ const malla = {
   ]
 };
 
-// Guardar y cargar estado
+// Funciones de estado y desbloqueo
 function guardarEstado() {
   const estado = {};
   document.querySelectorAll("li").forEach(li => {
@@ -83,11 +83,13 @@ function guardarEstado() {
 function cargarEstado() {
   const estado = JSON.parse(localStorage.getItem("mallaEnfermeria") || "{}");
   document.querySelectorAll("li").forEach(li => {
-    if (estado[li.dataset.codigo]) li.classList.add("aprobado");
+    if (estado[li.dataset.codigo]) {
+      li.classList.add("aprobado");
+      li.style.color = "#fff";
+    }
   });
 }
 
-// Desbloqueo
 function actualizarDesbloqueo() {
   document.querySelectorAll("li").forEach(li => {
     const prereq = li.dataset.prereq ? li.dataset.prereq.split(",") : [];
@@ -96,17 +98,22 @@ function actualizarDesbloqueo() {
       li.classList.remove("bloqueado");
       li.classList.add("desbloqueado");
       li.style.pointerEvents = "auto";
+      if (!li.classList.contains("aprobado")) li.style.color = "#1A5FAD";
     } else {
       li.classList.add("bloqueado");
       li.classList.remove("desbloqueado");
       li.style.pointerEvents = "none";
+      if (!li.classList.contains("aprobado")) li.style.color = "#1A5FAD";
     }
   });
 }
 
-// Crear malla
-const mallaGrid = document.getElementById("malla-grid");
-for (let semestre in malla) {
+// Crear malla (5 semestres arriba, 5 abajo)
+const mallaGridTop = document.getElementById("malla-grid-top");
+const mallaGridBottom = document.getElementById("malla-grid-bottom");
+const semestres = Object.keys(malla);
+
+semestres.forEach((semestre, index) => {
   const div = document.createElement("div");
   div.className = "semestre";
   div.innerHTML = `<h2>${semestre}</h2><ul></ul>`;
@@ -122,6 +129,7 @@ for (let semestre in malla) {
     li.addEventListener("click", () => {
       if (!li.classList.contains("bloqueado")) {
         li.classList.toggle("aprobado");
+        li.style.color = li.classList.contains("aprobado") ? "#fff" : "#1A5FAD";
         guardarEstado();
         actualizarDesbloqueo();
       }
@@ -130,16 +138,22 @@ for (let semestre in malla) {
     ul.appendChild(li);
   });
 
-  mallaGrid.appendChild(div);
-}
+  if (index < 5) {
+    mallaGridTop.appendChild(div);
+  } else {
+    mallaGridBottom.appendChild(div);
+  }
+});
 
 // Reiniciar
 document.getElementById("reset").addEventListener("click", () => {
   localStorage.removeItem("mallaEnfermeria");
-  document.querySelectorAll("li").forEach(li => li.classList.remove("aprobado"));
+  document.querySelectorAll("li").forEach(li => {
+    li.classList.remove("aprobado");
+    li.style.color = "#1A5FAD";
+  });
   actualizarDesbloqueo();
 });
 
-// Inicializar
 cargarEstado();
 actualizarDesbloqueo();
