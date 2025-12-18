@@ -1,4 +1,4 @@
-// Malla completa 10 semestres (usa el mismo código que te pasé antes)
+// Malla completa (usa la versión completa de los 10 semestres)
 const malla = {
   "Primer Semestre": [
     {codigo: "CBI111", nombre: "Biología Celular", creditos: 6, prereq: []},
@@ -15,10 +15,10 @@ const malla = {
     {codigo: "LCE001", nombre: "Inglés I", creditos: 4, prereq: []},
     {codigo: "CQU203", nombre: "Fundamentos De Química Y Bioquímica Para El Área De La Salud", creditos: 6, prereq: []}
   ],
-  // ... completa los demás semestres igual que antes
+  // ... agrega los demás semestres igual
 };
 
-// Funciones para guardar, cargar y desbloquear ramos
+// Guardar y cargar estado
 function guardarEstado() {
   const estado = {};
   document.querySelectorAll("li").forEach(li => {
@@ -34,6 +34,7 @@ function cargarEstado() {
   });
 }
 
+// Desbloqueo de ramos
 function actualizarDesbloqueo() {
   document.querySelectorAll("li").forEach(li => {
     const prereq = li.dataset.prereq ? li.dataset.prereq.split(",") : [];
@@ -50,7 +51,7 @@ function actualizarDesbloqueo() {
   });
 }
 
-// Crear malla en grid
+// Crear malla
 const mallaGrid = document.getElementById("malla-grid");
 for (let semestre in malla) {
   const div = document.createElement("div");
