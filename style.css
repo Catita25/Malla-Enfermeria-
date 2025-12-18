@@ -1,6 +1,5 @@
-/* Fuente y fondo general */
 body {
-  font-family: 'KG Miss Kindergarten', cursive;
+  font-family: 'Century', sans-serif;
   padding: 20px;
   background: #BDE0FE; /* azul pastel */
   overflow-x: auto;
@@ -26,18 +25,17 @@ button#reset {
   font-weight: bold;
 }
 
-/* Grid horizontal tipo horario */
-#malla-grid {
+#malla-grid-top,
+#malla-grid-bottom {
   display: flex;
   gap: 20px;
   overflow-x: auto;
   padding-bottom: 20px;
 }
 
-/* Semestre */
 .semestre {
   flex: 0 0 250px;
-  background: #85C1E9; /* nube semestre */
+  background: #85C1E9;
   border-radius: 25px;
   padding: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -50,7 +48,6 @@ button#reset {
   color: #1A5FAD;
 }
 
-/* Lista de ramos */
 ul {
   list-style: none;
   padding: 0;
@@ -60,9 +57,9 @@ ul {
 li {
   padding: 10px;
   margin: 8px 0;
-  border-radius: 25px; /* nube */
-  background: #BDE0FE; /* bloqueado */
-  color: #fff;
+  border-radius: 25px;
+  background: #BDE0FE; /* bloqueado o cursando */
+  color: #1A5FAD; /* letra azul */
   cursor: not-allowed;
   border: 2px solid #A9D6F9;
   transition: all 0.5s;
@@ -70,24 +67,21 @@ li {
   font-weight: 500;
 }
 
-/* Desbloqueado */
 li.desbloqueado {
-  background: #A9D6F9; /* azul pastel más visible */
+  background: #A9D6F9;
   border: 2px solid #1A5FAD;
   cursor: pointer;
-  color: #fff;
+  color: #1A5FAD;
 }
 
-/* Aprobado */
 li.aprobado {
-  background: #1A5FAD; /* azul oscuro */
+  background: #1A5FAD;
   color: #fff;
   text-decoration: line-through;
   border: 2px solid #1A5FAD;
   transition: all 0.5s;
 }
 
-/* Efecto hover */
 li:hover:not(.bloqueado):not(.aprobado) {
   background: #7EB3F0;
   transform: translateY(-2px);
