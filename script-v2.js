@@ -1,3 +1,4 @@
+alert("SCRIPT V2 FUNCIONA");
 document.addEventListener("DOMContentLoaded", () => {
 
   const ramos = [
