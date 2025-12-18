@@ -1,0 +1,30 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f7fa;
+  padding: 20px;
+}
+
+h1 {
+  color: #2c3e50;
+}
+
+button {
+  display: block;
+  margin: 10px 0;
+  padding: 12px;
+  width: 280px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button:not(:disabled) {
+  background-color: #4caf50;
+  color: white;
+}
