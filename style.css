@@ -3,6 +3,7 @@ body {
   font-family: 'KG Miss Kindergarten', cursive;
   padding: 20px;
   background: #BDE0FE; /* azul pastel */
+  overflow-x: auto;
 }
 
 h1 {
@@ -25,15 +26,17 @@ button#reset {
   font-weight: bold;
 }
 
-/* Grid de semestres */
+/* Grid horizontal tipo horario */
 #malla-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
   gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 20px;
 }
 
 /* Semestre */
 .semestre {
+  flex: 0 0 250px;
   background: #85C1E9; /* nube semestre */
   border-radius: 25px;
   padding: 15px;
@@ -57,37 +60,36 @@ ul {
 li {
   padding: 10px;
   margin: 8px 0;
-  border-radius: 25px; /* forma de nube */
-  background: #A9D6F9; /* fondo azul pastel de ramo */
-  color: #000;
-  cursor: pointer;
-  border: 2px solid #1A5FAD; /* borde azul */
-  transition: all 0.3s;
+  border-radius: 25px; /* nube */
+  background: #BDE0FE; /* bloqueado */
+  color: #fff;
+  cursor: not-allowed;
+  border: 2px solid #A9D6F9;
+  transition: all 0.5s;
   text-align: center;
   font-weight: 500;
 }
 
-/* Ramos desbloqueados */
+/* Desbloqueado */
 li.desbloqueado {
-  background: #C7E0FF;
+  background: #A9D6F9; /* azul pastel más visible */
   border: 2px solid #1A5FAD;
   cursor: pointer;
+  color: #fff;
 }
 
-/* Ramos aprobados */
+/* Aprobado */
 li.aprobado {
-  background: #A9D6F9; /* mantiene la nube */
-  color: #1A5FAD;
+  background: #1A5FAD; /* azul oscuro */
+  color: #fff;
   text-decoration: line-through;
-  border: 2px solid #1A3E75; /* borde más oscuro al aprobar */
+  border: 2px solid #1A5FAD;
+  transition: all 0.5s;
 }
 
-/* Ramos bloqueados */
-li.bloqueado {
-  cursor: not-allowed;
-  opacity: 0.8;
-}
-
+/* Efecto hover */
 li:hover:not(.bloqueado):not(.aprobado) {
-  background: #B6E0FF;
+  background: #7EB3F0;
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.2);
 }
