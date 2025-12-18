@@ -74,7 +74,7 @@ const malla = {
   ]
 };
 
-// Guardar, cargar y desbloquear
+// Funciones
 function guardarEstado() {
   const estado = {};
   document.querySelectorAll("li").forEach(li => {
@@ -106,9 +106,8 @@ function actualizarDesbloqueo() {
   });
 }
 
-// Crear malla en grid
+// Crear malla
 const mallaGrid = document.getElementById("malla-grid");
-
 for (let semestre in malla) {
   const div = document.createElement("div");
   div.className = "semestre";
@@ -134,7 +133,7 @@ for (let semestre in malla) {
   mallaGrid.appendChild(div);
 }
 
-// Reiniciar malla
+// Reiniciar
 document.getElementById("reset").addEventListener("click", () => {
   localStorage.removeItem("mallaEnfermeria");
   document.querySelectorAll("li").forEach(li => li.classList.remove("aprobado"));
