@@ -1,9 +1,90 @@
-body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
-h1 { text-align: center; }
-.semestre { background: #fff; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-ul { list-style: none; padding: 0; }
-li { padding: 5px; cursor: pointer; border-radius: 4px; }
-li.aprobado { background: #4CAF50; color: #fff; }
-li.desbloqueado { background: #e7f3fe; }
-li.bloqueado { background: #f0f0f0; color: #999; cursor: not-allowed; }
-li:hover:not(.bloqueado) { background: #d0ebff; }
+/* Fondo general */
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background: #8fe3ff; /* celeste de fondo */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+button#reset {
+  display: block;
+  margin: 0 auto 20px auto;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #53d4ff;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Grid de semestres */
+#malla-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 semestres por fila */
+  gap: 20px;
+}
+
+/* Semestre */
+.semestre {
+  background: rgba(255,255,255,0.85);
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.semestre h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 18px;
+  cursor: pointer; /* para colapsar */
+}
+
+/* Lista de ramos */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 25px; /* “nube” redondeada */
+  background: #fff;     
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+  font-weight: 500;
+}
+
+li.aprobado {
+  background: #53d4ff; /* celeste aprobado */
+  color: #fff;
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.3);
+}
+
+li.desbloqueado {
+  background: #e7f3fe;
+  color: #000;
+}
+
+li.bloqueado {
+  background: #d0d0d0;
+  color: #999;
+  cursor: not-allowed;
+}
+
+li:hover:not(.bloqueado):not(.aprobado) {
+  background: #a0e0ff;
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+}
