@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   ];
 
-
   function puedeDesbloquear(ramo) {
     return ramo.prerequisitos.every(id =>
       ramos.find(r => r.id === id && r.aprobado)
