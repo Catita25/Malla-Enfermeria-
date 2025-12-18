@@ -1,6 +1,6 @@
 alert("SCRIPT V2 FUNCIONA");
 
-// Malla completa con ramos, créditos y prerrequisitos
+// Malla completa 10 semestres
 const malla = {
   "Primer Semestre": [
     {codigo: "CBI111", nombre: "Biología Celular", creditos: 6, prereq: []},
@@ -74,7 +74,7 @@ const malla = {
   ]
 };
 
-// Guardar estado en localStorage
+// Guardar, cargar y desbloquear
 function guardarEstado() {
   const estado = {};
   document.querySelectorAll("li").forEach(li => {
@@ -83,7 +83,6 @@ function guardarEstado() {
   localStorage.setItem("mallaEnfermeria", JSON.stringify(estado));
 }
 
-// Cargar estado
 function cargarEstado() {
   const estado = JSON.parse(localStorage.getItem("mallaEnfermeria") || "{}");
   document.querySelectorAll("li").forEach(li => {
@@ -91,7 +90,6 @@ function cargarEstado() {
   });
 }
 
-// Actualizar desbloqueo según prerrequisitos
 function actualizarDesbloqueo() {
   document.querySelectorAll("li").forEach(li => {
     const prereq = li.dataset.prereq ? li.dataset.prereq.split(",") : [];
@@ -108,8 +106,8 @@ function actualizarDesbloqueo() {
   });
 }
 
-// Crear la malla en HTML
-const semestresDiv = document.getElementById("semestres");
+// Crear malla en grid
+const mallaGrid = document.getElementById("malla-grid");
 
 for (let semestre in malla) {
   const div = document.createElement("div");
@@ -133,8 +131,15 @@ for (let semestre in malla) {
     ul.appendChild(li);
   });
 
-  semestresDiv.appendChild(div);
+  mallaGrid.appendChild(div);
 }
+
+// Reiniciar malla
+document.getElementById("reset").addEventListener("click", () => {
+  localStorage.removeItem("mallaEnfermeria");
+  document.querySelectorAll("li").forEach(li => li.classList.remove("aprobado"));
+  actualizarDesbloqueo();
+});
 
 // Inicializar
 cargarEstado();
