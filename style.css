@@ -1,15 +1,15 @@
 /* Fondo general */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'KG Miss Kindergarten', cursive;
   padding: 20px;
-  background: #8fe3ff; /* celeste de fondo */
+  background: #95C1E6; /* fondo general */
 }
 
 h1 {
   text-align: center;
   margin-bottom: 20px;
-  color: #fff;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  color: #1A5FAD;
+  font-size: 48px;
 }
 
 button#reset {
@@ -19,7 +19,7 @@ button#reset {
   font-size: 16px;
   border-radius: 8px;
   cursor: pointer;
-  background: #53d4ff;
+  background: #1A5FAD;
   border: none;
   color: #fff;
   font-weight: bold;
@@ -28,22 +28,23 @@ button#reset {
 /* Grid de semestres */
 #malla-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 semestres por fila */
+  grid-template-columns: repeat(5, 1fr); 
   gap: 20px;
 }
 
 /* Semestre */
 .semestre {
-  background: rgba(255,255,255,0.85);
+  background: #458CCC; /* fondo semestre */
   border-radius: 16px;
   padding: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .semestre h2 {
   text-align: center;
   margin-bottom: 10px;
-  font-size: 18px;
+  font-size: 20px;
+  color: #1A5FAD;
 }
 
 /* Lista de ramos */
@@ -56,9 +57,9 @@ ul {
 li {
   padding: 10px;
   margin: 8px 0;
-  border-radius: 25px; /* “nube” redondeada */
-  background: #fff;     
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+  border-radius: 25px;
+  background: #458CCC; /* ramos bloqueados */
+  color: #fff;
   cursor: pointer;
   transition: all 0.3s;
   text-align: center;
@@ -66,24 +67,25 @@ li {
 }
 
 li.aprobado {
-  background: #53d4ff; /* celeste aprobado */
-  color: #fff;
-  box-shadow: 2px 4px 12px rgba(0,0,0,0.3);
+  background: transparent;
+  color: #1A5FAD;
+  text-decoration: line-through;
+  box-shadow: none;
 }
 
 li.desbloqueado {
-  background: #e7f3fe;
+  background: #A6C5E3;
   color: #000;
 }
 
 li.bloqueado {
-  background: #d0d0d0;
-  color: #999;
+  background: #458CCC;
+  color: #fff;
   cursor: not-allowed;
 }
 
 li:hover:not(.bloqueado):not(.aprobado) {
-  background: #a0e0ff;
+  background: #5A8FD1;
   transform: translateY(-2px);
-  box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.2);
 }
