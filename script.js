@@ -1,10 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   const ramos = [
-    { id: "anatomia", nombre: "Anatomía", aprobado: false, prerequisitos: [] },
-    { id: "fisiologia", nombre: "Fisiología", aprobado: false, prerequisitos: ["anatomia"] },
-    { id: "farmacologia", nombre: "Farmacología", aprobado: false, prerequisitos: ["fisiologia"] }
-  ];
+  { id: "CBI111", nombre: "Biología Celular (6 créditos)", aprobado: false, prerequisitos: [] },
+  { id: "MAT110", nombre: "Introducción a la Matemática Aplicada (6 créditos)", aprobado: false, prerequisitos: [] },
+  { id: "LIC001", nombre: "Fundamento del Actuar Comunitario (4 créditos)", aprobado: false, prerequisitos: [] },
+  { id: "MYF101", nombre: "Morfología y Función (6 créditos)", aprobado: false, prerequisitos: [] },
+  { id: "ENF110", nombre: "Primeros Auxilios (2 créditos)", aprobado: false, prerequisitos: [] },
+  { id: "ENF102", nombre: "Introducción a los Estudios de Enfermería (3 créditos)", aprobado: false, prerequisitos: [] }
+];
 
   function puedeDesbloquear(ramo) {
     return ramo.prerequisitos.every(id =>
